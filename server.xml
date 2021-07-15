@@ -1,0 +1,16 @@
+IF you want change the port number for tomcat follow the below steps
+
+Go inside:   apache-tomcat-8.5.3/conf >> server.xml>
+vi server.xml
+   
+    -->
+    <Connector port="8080" protocol="HTTP/1.1"            >>>>> chage port number in this line if you want
+               connectionTimeout="20000"
+               redirectPort="8443" />
+    <!-- A "Connector" using the shared thread pool-->
+    <!--
+    <Connector executor="tomcatThreadPool"
+               port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+   
