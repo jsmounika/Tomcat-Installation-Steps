@@ -1,0 +1,53 @@
+Install tomcat server in aws linux
+----------------------------------
+1. Go to tomcat.apache.org/download and find the latest stable version of tomcat, Get the URL address of "tar.gz" file. (Right click on the tar.gz file and select copy link address)
+	Ex: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+2. Enter as root user by running 
+	sudo -i
+3. Run this command - 
+	wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
+4. Extract TAR file.
+   Go to /usr/local or /usr/shared 
+	cd /usr/local
+   Then extract the TAR file you downloaded in previous step.
+	tar -xvf <path of tar file>
+	Ex: tar -xvf /root/apache-tomcat-9.0.41.tar.gz  (here tar file is present in /root/ , so mentioned 	/root/apache-tomcat-9.0.41.tar.gz)
+5. Go to conf folder inside apache tomcat and open tomcat-users.xml file
+	cd apache-tomcat-9.0.41
+	cd conf
+	vi tomcat-users.xml
+6. Press i to enter into insert mode. then replace the roles with below roles -
+	<role rolename="manager-gui"/>
+  	<role rolename="admin-gui"/>
+  	<role rolename="manager-script"/>
+  	<user username="tomcat" password="tomcat" roles="manager-gui,admin-gui,manager-script"/>
+7. Press ESC to exit from insert mode in vi editor. then type :wq to save the file and exit.
+8. Now we have to find context.xml files and need to comment Valve tag. To find those file run below command-
+	find ~ / -name context.xml 
+It will show below files-
+	/usr/local/apache-tomcat-9.0.73/conf/context.xml
+	/usr/local/apache-tomcat-9.0.73/webapps/docs/META-INF/context.xml
+	/usr/local/apache-tomcat-9.0.73/webapps/examples/META-INF/context.xml
+	/usr/local/apache-tomcat-9.0.73/webapps/host-manager/META-INF/context.xml
+	/usr/local/apache-tomcat-9.0.73/webapps/manager/META-INF/context.xml
+Open the above files in vi editor (The first conf/context.xml file don't have Valve tag, so no need to do anything in that file) -
+ 	vi /usr/local/apache-tomcat-9.0.73/webapps/docs/META-INF/context.xml
+And comment Valve tage as shown below and save & exit (:wq) -
+	<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+  		allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+9. If we want to change default port number of tomcat server, then we can change it with server.xml file present in conf folder.
+	vi server.xml
+Go to this line and change port number if you want to change port - 
+	<Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+10. Run the tomcat by going inside bin directory-
+	cd /usr/local/apache-tomcat-9.0.73/bin
+	sh start.sh
+11. Go to browser and check the server running
+	Ex: 3.210.204.123:8080/
+12. Click on Manager app to see the applications deployed over there. It will ask for credentials, provide the credentials you have mentioned in tomcat-users.xml file (under user tag) (here username and password we have mentioned are tomcat).
+13. To stop the tomcat, use below command -
+	cd /usr/local/apache-tomcat-9.0.73/bin
+	sh shutdown.sh
+
