@@ -16,7 +16,7 @@ Install tomcat server in aws linux
 	cd apache-tomcat-9.0.41
 	cd conf
 	vi tomcat-users.xml
-6. Press i to enter into insert mode. then replace the roles with below roles -
+6. Press i to enter into insert mode. then replace the roles with below roles (I HAVE ADDED REFERENCE tomcat-users.xml FILE IN THIS REPOSITORY) -
 	<role rolename="manager-gui"/>
   	<role rolename="admin-gui"/>
   	<role rolename="manager-script"/>
@@ -35,9 +35,12 @@ Open the above files in vi editor (The first conf/context.xml file don't have Va
 And comment Valve tage as shown below and save & exit (:wq) -
 	<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
   		allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+		
+(I HAVE ADDED REFERENCE context.xml FILE IN THIS REPOSITORY)
+
 9. If we want to change default port number of tomcat server, then we can change it with server.xml file present in conf folder.
 	vi server.xml
-Go to this line and change port number if you want to change port - 
+Go to this line and change port number if you want to change port (I HAVE ADDED REFERENCE server.xml FILE IN THIS REPOSITORY) - 
 	<Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
