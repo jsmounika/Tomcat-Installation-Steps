@@ -1,6 +1,6 @@
 Install tomcat server in aws linux
 ----------------------------------
-1. Go to tomcat.apache.org/download and find the latest stable version of tomcat, Get the URL address of "tar.gz" file. (Right click on the tar.gz file and select copy link address)
+1. Go to https://tomcat.apache.org/download-80.cgi and find the latest stable version of tomcat, Get the URL address of "tar.gz" file. (Right click on the tar.gz file and select copy link address)
 	Ex: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
 2. Enter as root user by running 
 	sudo -i
