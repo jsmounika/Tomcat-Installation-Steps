@@ -32,7 +32,7 @@ It will show below files-
 	/usr/local/apache-tomcat-9.0.73/webapps/manager/META-INF/context.xml
 Open the above files in vi editor (The first conf/context.xml file don't have Valve tag, so no need to do anything in that file) -
  	vi /usr/local/apache-tomcat-9.0.73/webapps/docs/META-INF/context.xml
-And comment Valve tage as shown below and save & exit (:wq) -
+And comment to the Valve tag as shown below and save & exit (:wq) -
 	<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
   		allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 		
